@@ -1,0 +1,22 @@
+<stmt>           → <create_stmt>
+<stmt>           → <insert_stmt>
+<stmt>           → <select_stmt>
+<stmt>           → <update_stmt>
+<stmt>           → <delete_stmt>
+
+<create_stmt>    → "CREATE" "TABLE" id "(" <column_defs> ")"
+<column_defs>    → <column_def> <column_defs_tail>
+<column_defs_tail> → "," <column_def> <column_defs_tail> | ε
+<column_def>     → id type
+
+<insert_stmt>    → "INSERT" "INTO" id "VALUES" "(" <values> ")"
+<values>         → value <values_tail>
+<values_tail>    → "," value <values_tail> | ε
+
+<select_stmt>    → "SELECT" <column_list> "FROM" id <where_opt>
+<column_list>    → id <column_list_tail> | "*"
+<column_list_tail> → "," id <column_list_tail> | ε
+<where_opt>      → "WHERE" id "=" value | ε
+
+<update_stmt>    → "UPDATE" id "SET" id "=" value <where_opt>
+<delete_stmt>    → "DELETE" "FROM" id <where_opt>
