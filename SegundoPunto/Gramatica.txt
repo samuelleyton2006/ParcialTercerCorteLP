@@ -1,22 +1,22 @@
-1. <stmt>           → <create_stmt>
-2. <stmt>           → <insert_stmt>
-3. <stmt>           → <select_stmt>
- <stmt>           → <update_stmt>
- <stmt>           → <delete_stmt>
+<programa> ::= <sentencias>
 
- <create_stmt>    → "CREATE" "TABLE" id "(" <column_defs> ")"
- <column_defs>    → <column_def> <column_defs_tail>
- <column_defs_tail> → "," <column_def> <column_defs_tail> | ε
- <column_def>     → id type
+<sentencias> ::= <sentencia> 
+               | <sentencia> <sentencias>
 
- <insert_stmt>   → "INSERT" "INTO" id "VALUES" "(" <values> ")"
- <values>        → value <values_tail>
- <values_tail>   → "," value <values_tail> | ε
+<sentencia> ::= <declaracion_matriz>
+              | <operacion_producto>
+              | <imprimir>
 
- <select_stmt>   → "SELECT" <column_list> "FROM" id <where_opt>
- <column_list>   → id <column_list_tail> | "*"
- <column_list_tail> → "," id <column_list_tail> | ε
- <where_opt>     → "WHERE" id "=" value | ε
+<declaracion_matriz> ::= MATRIX ID '=' <matriz>
 
- <update_stmt>   → "UPDATE" id "SET" id "=" value <where_opt>
- <delete_stmt>   → "DELETE" "FROM" id <where_opt>
+<matriz> ::= '[' <filas> ']'
+<filas> ::= <fila> 
+          | <fila> ',' <filas>
+
+<fila> ::= '[' <numeros> ']'
+<numeros> ::= NUM 
+            | NUM ',' <numeros>
+
+<operacion_producto> ::= ID '=' ID '*' ID
+
+<imprimir> ::= PRINT ID
