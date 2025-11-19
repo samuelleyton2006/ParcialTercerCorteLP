@@ -1,101 +1,203 @@
-# Parcial Tercer Corte Lenguajes de Programación
+# Proyecto Final — Lenguajes de Programación
 
-------------------------------------------------------------------------
+**Autor:** Samuel Esteban Leyton  
+**Fecha:** 2025
+
+---
 
 ## 📘 Descripción General
 
-Este proyecto desarrolla los **tres puntos solicitados oficialmente** en
-la tarea final de Lenguajes de Programación.
+Este proyecto desarrolla los **tres puntos solicitados oficialmente** en la tarea final de Lenguajes de Programación.
 
-Cada punto aborda un componente central de la teoría de lenguajes
-formales: - Gramáticas libres de contexto - Gramáticas de atributos -
-Implementación práctica en ANTLR4 - Procesamiento de lenguajes con
-Python
+Cada punto aborda un componente central de la teoría de lenguajes formales:
 
-------------------------------------------------------------------------
+- Gramáticas libres de contexto
+- Gramáticas de atributos
+- Implementación práctica en ANTLR4
+- Procesamiento de lenguajes con Python
 
-# ✔️ PUNTO 1 --- Función que genera una Gramática de Atributos para un Lenguaje SQL (CRUD)
+---
 
-El primer punto consiste en **modelar una función** que genere una
-**gramática de atributos** diseñada para un lenguaje simple basado en
-operaciones SQL (CRUD):
+## 📝 Punto 1: Función Generadora de Gramática de Atributos (SQL/CRUD)
 
--   Create
--   Read
--   Update
--   Delete
+El primer punto consiste en **modelar una función** que genere una **gramática de atributos** diseñada para un lenguaje simple basado en operaciones SQL (CRUD):
 
-La función implementada imprime:
+- **Create** — Crear registros
+- **Read** — Leer/consultar datos
+- **Update** — Actualizar registros
+- **Delete** — Eliminar datos
 
--   La gramática GIC del lenguaje SQL básico\
--   Los atributos de los no terminales\
--   Las reglas semánticas
+### ¿Qué genera la función?
 
-Esta función se ejecuta desde el menú del programa principal.
+La función implementada en `Funcion.py` imprime:
 
-------------------------------------------------------------------------
+1. La gramática GIC del lenguaje SQL básico
+2. Los atributos de los no terminales
+3. Las reglas semánticas asociadas
 
-# ✔️ PUNTO 2 --- Gramática para un Lenguaje que Realiza Producto Punto entre Dos Matrices
+Esta función se ejecuta desde el menú del programa principal (`Main.py`).
 
-Se diseñó una **GIC** para un lenguaje que permita representar el
-**producto punto** entre matrices.
+### Archivos relacionados
 
-### Gramática:
+- `Gramatica.txt` — Contiene la gramática formal
+- `AtributosNoTerminales.txt` — Lista de atributos
+- `ReglasSemanticas.txt` — Reglas semánticas
+- `Funcion.py` — Implementación de la función generadora
 
-    <program>        → <matrix> "*" <matrix>
-    <matrix>         → "[" <rows> "]"
-    <rows>           → <row> | <row> "," <rows>
-    <row>            → "[" <nums> "]"
-    <nums>           → NUM | NUM "," <nums>
-    NUM              → entero positivo o negativo
+---
 
-### Ejemplo válido:
+## 🔢 Punto 2: Gramática para Producto Punto entre Matrices
 
-    [[1,2,3],[4,5,6]] * [[7],[8],[9]]
+Se diseñó una **gramática libre de contexto (GIC)** para un lenguaje que permita representar el **producto punto** entre dos matrices.
 
-------------------------------------------------------------------------
+### Definición de la Gramática
 
-# ✔️ PUNTO 3 --- Implementación en ANTLR4 (Python)
+```
+<program>    → <matrix> "*" <matrix>
+<matrix>     → "[" <rows> "]"
+<rows>       → <row> | <row> "," <rows>
+<row>        → "[" <nums> "]"
+<nums>       → NUM | NUM "," <nums>
+NUM          → entero positivo o negativo
+```
 
-Para implementar esta gramática:
+### Ejemplo de Entrada Válida
 
-    ProductoPunto.g4
+```
+[[1,2,3],[4,5,6]] * [[7],[8],[9]]
+```
 
-Se generó el parser con:
+Esta expresión representa el producto punto entre:
+- Matriz A: 2×3
+- Matriz B: 3×1
 
-    antlr4 -Dlanguage=Python3 ProductoPunto.g4
+---
 
-Archivos generados:
+## ⚙️ Punto 3: Implementación en ANTLR4
 
--   ProductoPuntoLexer.py\
--   ProductoPuntoParser.py\
--   ProductoPuntoListener.py\
--   ProductoPunto.tokens
+La gramática del Punto 2 se implementó utilizando **ANTLR4** con Python como lenguaje objetivo.
 
-El archivo `main.py` ejecuta el proceso de parsing.
+### Archivo de Gramática
 
-------------------------------------------------------------------------
+```
+ProductoPunto.g4
+```
 
-# 📂 Estructura del Proyecto
+### Generación del Parser
 
-    ProyectoLenguajes/
-    │
-    ├── Gramatica.txt
-    ├── AtributosNoTerminales.txt
-    ├── ReglasSemanticas.txt
-    │
-    ├── Funcion.py
-    ├── Main.py
-    │
-    ├── ProductoPunto.g4
-    ├── ProductoPuntoLexer.py
-    ├── ProductoPuntoParser.py
-    ├── ProductoPuntoListener.py
-    └── ProductoPunto.tokens
+Para generar los analizadores léxico y sintáctico, ejecutar:
 
-------------------------------------------------------------------------
+```bash
+antlr4 -Dlanguage=Python3 ProductoPunto.g4
+```
 
-# 🏁 Conclusión
+### Archivos Generados
 
-Este proyecto combina teoría formal con herramientas prácticas,
-cumpliendo los tres puntos del trabajo final.
+- `ProductoPuntoLexer.py` — Analizador léxico
+- `ProductoPuntoParser.py` — Analizador sintáctico
+- `ProductoPuntoListener.py` — Listener para recorrido del árbol
+- `ProductoPunto.tokens` — Definición de tokens
+
+### Ejecución
+
+El archivo `main.py` ejecuta el proceso completo de parsing:
+
+```bash
+python3 main.py
+```
+
+El programa:
+1. Lee la expresión del usuario
+2. Realiza el análisis léxico
+3. Construye el árbol sintáctico
+4. Valida la corrección de la entrada
+
+---
+
+## 📂 Estructura del Proyecto
+
+```
+ProyectoLenguajes/
+│
+├── Gramatica.txt                   # Gramática SQL (CRUD)
+├── AtributosNoTerminales.txt       # Atributos de los no terminales
+├── ReglasSemanticas.txt            # Reglas semánticas
+│
+├── Funcion.py                      # Función generadora (Punto 1)
+├── Main.py                         # Menú principal del proyecto
+│
+├── ProductoPunto.g4                # Gramática ANTLR (Punto 2)
+├── ProductoPuntoLexer.py           # Lexer generado
+├── ProductoPuntoParser.py          # Parser generado
+├── ProductoPuntoListener.py        # Listener generado
+├── ProductoPunto.tokens            # Tokens generados
+└── main.py                         # Ejecutor del parser (Punto 3)
+```
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+
+| Tecnología | Propósito |
+|------------|-----------|
+| **ANTLR4** (v4.13.x) | Generación de analizadores léxico y sintáctico |
+| **Python 3** | Lenguaje objetivo para la implementación |
+| **Gramáticas Formales** | Modelado de lenguajes y sintaxis |
+| **Gramáticas de Atributos** | Especificación de semántica |
+
+---
+
+## 🚀 Instrucciones de Uso
+
+### Requisitos Previos
+
+- Python 3.x instalado
+- ANTLR4 instalado y configurado
+- Archivos del proyecto descargados
+
+### Paso 1: Generar el Parser (si no existe)
+
+```bash
+antlr4 -Dlanguage=Python3 ProductoPunto.g4
+```
+
+### Paso 2: Ejecutar el Programa Principal
+
+```bash
+python3 Main.py
+```
+
+### Paso 3: Probar el Parser de Matrices
+
+```bash
+python3 main.py
+```
+
+---
+
+## 📊 Menú del Programa Principal
+
+Al ejecutar `Main.py`, se presenta el siguiente menú:
+
+1. **Imprimir gramática SQL (CRUD)** — Muestra la gramática formal
+2. **Imprimir lista de atributos** — Lista todos los atributos de los no terminales
+3. **Imprimir reglas semánticas** — Muestra las reglas semánticas definidas
+4. **Generar gramática desde función** — Ejecuta la función generadora del Punto 1
+5. **Salir** — Termina la ejecución
+
+---
+
+## ✅ Resultados del Proyecto
+
+Este proyecto logra:
+
+✔️ **Diseño teórico** de gramáticas formales y de atributos  
+✔️ **Implementación práctica** con herramientas profesionales (ANTLR4)  
+✔️ **Integración completa** entre teoría y práctica de lenguajes de programación  
+✔️ **Validación funcional** mediante parsing y análisis sintáctico
+
+---
+
+## 🏁 Conclusión
+
+Este proyecto combina teoría formal con herramientas prácticas, cumpliendo los tres puntos del trabajo final de Lenguajes de Programación. Demuestra comprensión profunda de gramáticas, análisis sintáctico y construcción de lenguajes mediante ANTLR4 y Python.
