@@ -1,8 +1,4 @@
-# Proyecto Final --- Lenguajes de Programación
-
-### Autor: Samuel Esteban Leyton
-
-### Fecha: 2025
+# Parcial Tercer Corte Lenguajes de Programación
 
 ------------------------------------------------------------------------
 
