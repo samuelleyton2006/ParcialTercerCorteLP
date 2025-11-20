@@ -1,20 +1,4 @@
-# Proyecto Final — Lenguajes de Programación
-
-**Autor:** Samuel Esteban Leyton  
-**Fecha:** 2025
-
----
-
-## 📘 Descripción General
-
-Este proyecto desarrolla los **tres puntos solicitados oficialmente** en la tarea final de Lenguajes de Programación.
-
-Cada punto aborda un componente central de la teoría de lenguajes formales:
-
-- Gramáticas libres de contexto
-- Gramáticas de atributos
-- Implementación práctica en ANTLR4
-- Procesamiento de lenguajes con Python
+# Parcial Final — Lenguajes de Programación
 
 ---
 
@@ -187,14 +171,6 @@ Al ejecutar `Main.py`, se presenta el siguiente menú:
 
 ---
 
-## ✅ Resultados del Proyecto
-
-Este proyecto logra:
-
-✔️ **Diseño teórico** de gramáticas formales y de atributos  
-✔️ **Implementación práctica** con herramientas profesionales (ANTLR4)  
-✔️ **Integración completa** entre teoría y práctica de lenguajes de programación  
-✔️ **Validación funcional** mediante parsing y análisis sintáctico
 
 ---
 
